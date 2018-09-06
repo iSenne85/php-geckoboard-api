@@ -32,7 +32,7 @@ class Client
     }
 
     /**
-     * @param array|\Guzzle\Common\Collection $config
+     * @param array $config
      *
      * @return Client $this
      */
@@ -46,7 +46,7 @@ class Client
     /**
      * @param string|bool $key
      *
-     * @return \Guzzle\Common\Collection|mixed
+     * @return mixed
      */
     public function getGuzzleConfig($key = false)
     {
