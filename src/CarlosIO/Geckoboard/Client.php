@@ -13,7 +13,7 @@ class Client
     const URI = 'https://push.geckoboard.com';
 
     /**
-     * @var \Guzzle\Http\Client
+     * @var \GuzzleHttp\Client
      */
     protected $client;
 
@@ -27,8 +27,10 @@ class Client
      */
     public function __construct()
     {
+        $config = array('base_uri' => self::URI);
+
         $this->api = '';
-        $this->client = new Guzzle(self::URI);
+        $this->client = new Guzzle($config);
     }
 
     /**
@@ -101,7 +103,7 @@ class Client
     private function getWidgetsArray($widget)
     {
         $widgets = $widget;
-        if (!is_array($widget)) {
+        if (! is_array($widget)) {
             $widgets = array($widget);
         }
 
@@ -124,7 +126,7 @@ class Client
     private function pushWidget(Widget $widget)
     {
         $this->client->post(
-            '/v1/send/'.$widget->getId(),
+            '/v1/send/' . $widget->getId(),
             null,
             json_encode(
                 array(
