@@ -10,11 +10,15 @@
         {
             "name": "Raúl Fernández",
             "email": "arsakiyo@gmail.com"
+        },
+        {
+            "name": "Senne Tijdeman",
+            "email": "isenne@outlook.com"
         }
     ],
     "require": {
         "php": ">=5.3.3",
-        "guzzle/guzzle": "3.9.*"
+        "guzzlehttp/guzzle": "^6.3"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.0",
