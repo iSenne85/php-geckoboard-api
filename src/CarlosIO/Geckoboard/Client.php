@@ -2,7 +2,7 @@
 
 namespace CarlosIO\Geckoboard;
 
-use Guzzle\Http\Client as Guzzle;
+use GuzzleHttp\Client as Guzzle;
 use CarlosIO\Geckoboard\Widgets\Widget;
 
 /**
