@@ -4,6 +4,7 @@ namespace CarlosIO\Geckoboard;
 
 use GuzzleHttp\Client as Guzzle;
 use CarlosIO\Geckoboard\Widgets\Widget;
+use GuzzleHttp\RequestOptions;
 
 /**
  * Class Client.
@@ -85,6 +86,7 @@ class Client
      * @param $widget
      *
      * @return $this
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function push($widget)
     {
@@ -112,6 +114,7 @@ class Client
 
     /**
      * @param $widgets
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     private function pushWidgets($widgets)
     {
@@ -122,17 +125,15 @@ class Client
 
     /**
      * @param $widget
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     private function pushWidget(Widget $widget)
     {
-        $this->client->post(
-            '/v1/send/' . $widget->getId(),
-            null,
-            json_encode(
-                array(
-                    'api_key' => $this->getApiKey(),
-                    'data' => $widget->getData(),
-                )
-            ))->send();
+        $this->client->request('POST', '/v1/send/' . $widget->getId(), array(
+            RequestOptions::JSON => array(
+                'api_key' => $this->getApiKey(),
+                'data' => $widget->getData(),
+            ),
+        ));
     }
 }
